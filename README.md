@@ -1,173 +1,136 @@
 
----
+----------
 
-## **Project Title**: Transparency Portal  
+## **Project Title**: Transparency Portal
 
 **Purpose**:  
-The Transparency Portal is designed to fight corruption by allowing citizens to report incidents of misconduct anonymously and track the progress of their complaints. It’s a simple, secure platform aimed at increasing transparency and accountability in governance.
+The Transparency Portal provides a secure and efficient platform for citizens to report corruption. It supports both anonymous and non-anonymous reporting while ensuring privacy, transparency, and accountability. Users must create accounts to submit complaints, and anonymous reports are designed to prevent personal data from being linked to complaints unless optional contact information is provided.
 
----
+----------
 
-### **Key Features (For Hackathon Version)**
+### **Key Features**
 
-1. **Anonymous Reporting**:
-   - Users can fill out a simple form to report corruption cases without logging in.
-   - The system generates a unique **Complaint ID** for each submission.
+1.  **User Accounts**:
+    
+    -   All users must create an account (username/password or email/password).
+    -   User authentication ensures secure access to the platform.
+    -   Anonymous submissions do not link user details to the complaint, maintaining privacy.
+2.  **Anonymous Reporting**:
+    
+    -   Users can submit complaints without attaching any identifiable personal data to the complaint.
+    -   **Optional Contact Information**: Users may provide a secure email address, allowing authorities to request additional information without revealing their identity.
+3.  **Non-Anonymous Reporting**:
+    
+    -   Users can link their complaints to their accounts.
+    -   Notifications are sent to users via email or SMS whenever the status of their complaint changes (e.g., “Under Review,” “Resolved”).
+    -   Provides full transparency and accountability for the reporting process.
+4.  **Anonymous Complaint Tracking**:
+    
+    -   Anonymous users receive a unique **Complaint ID** to track the status of their submission.
+    -   Tracking ensures users stay informed about the progress of their complaint while preserving anonymity.
+5.  **Spam Prevention with reCAPTCHA**:
+    
+    -   Google reCAPTCHA is implemented to block spam and bot submissions.
+6.  **AI Integration**:
+    
+    -   An **OpenAI model** classifies complaints by severity (critical, moderate, minor) and generates summaries for administrators.
+    -   Ensures quicker prioritization and resolution.
+7.  **Comprehensive Admin Dashboard**:
+    
+    -   Admins can:
+        -   View all complaints, their statuses, and AI-assigned severity levels.
+        -   Use filters to prioritize complaints by severity and type.
+        -   Send email inquiries to users (if optional email was provided for anonymous complaints).
+        -   Notify non-anonymous users about updates or resolutions.
+    -   Real-time analytics and insights on complaint trends.
 
-2. **Complaint Tracking**:
-   - Users can check the status of their complaint by entering the unique Complaint ID.
-   - Status updates (like "Submitted," "Under Review," "Resolved") will give users confidence in the process.
+----------
 
-3. **Admin Dashboard (Optional/Stretch Goal)**:
-   - A basic dashboard where an admin can view all complaints and change their statuses.
+### **Tech Stack**
 
----
+1.  **Frontend**:
+    
+    -   **Framework**: React.js and Next.js.
+    -   **Styling**: Tailwind CSS.
+   
+2.  **Backend**:
+    
+    -   **Framework**: Appwrite cloud
+    -   **Database**: Appwrite cloud
+    -   **AI Integration**: OpenAI API for classification and summarization.
+    -   **Notification Service**: Nodemailer (email) or Twilio (SMS).
+3.  **Deployment**:
+    
+    -   **Frontend**: Vercel.
+    -   **Backend**: Appwirte cloud.
 
-### **Tech Stack (Optimized for Hackathon)**
+----------
 
-1. **Frontend**:
-   - **Framework**: React.js or Next.js (for faster development and deployment).
-   - **Styling**: Tailwind CSS (quick and responsive UI).
+## Project Flow
 
-2. **Backend**:
-   - **Framework**: Node.js with Express.js (lightweight and easy to set up).
-   - **Database**: Firebase Realtime Database or SQLite (minimal setup and easy integration).
+#### **Step 1: User Account Creation**
 
-3. **Deployment**:
-   - **Frontend**: Vercel (free and fast deployment for React/Next.js apps).
-   - **Backend**: Render (easy to deploy Node.js apps with free tiers).
+1.  User creates an account via email/password or username/password.
+2.  Authentication ensures secure access to complaint submissions and tracking.
 
-4. **Tools for Collaboration**:
-   - **GitHub**: Version control and project tracking.
-   - **Trello/Notion**: For task management.
+#### **Step 2: Complaint Submission**
 
----
+1.  User selects:
+    -   **Anonymous Complaint**: Complaint is not linked to their account.
+    -   **Non-Anonymous Complaint**: Complaint is linked to their account.
+2.  User fills out the complaint form with:
+    -   **Type of corruption** (e.g., bribery, fraud).
+    -   **Details** (what, where, when).
+    -   **Optional Email Address** (for anonymous complaints).
+    -   **Optional attachment** (photo/document).
+3.  **reCAPTCHA** ensures submissions are from real users.
+4.  System processes the complaint:
+    -   Stores it in the database.
+    -   Generates a unique **Complaint ID** for tracking.
 
-### **Project Flow**
+#### **Step 3: AI Classification and Summarization**
 
-#### **Step 1: User Reports Corruption**
-- User visits the portal and fills out a complaint form with:
-  - **Type of corruption** (e.g., bribery, fraud).
-  - **Details** (what, where, and when).
-  - **Optional attachment** (e.g., a photo or document).
-- The system stores the complaint in the database and generates a unique **Complaint ID**.
+1.  OpenAI processes the complaint:
+    -   Classifies it by severity (critical, moderate, minor).
+    -   Summarizes the details for efficient admin review.
 
-#### **Step 2: User Tracks Complaint**
-- Users can check the status of their complaint using the Complaint ID on a separate page.
-- Status options (e.g., Submitted, Under Review, Resolved) help keep the user informed.
+#### **Step 4: Tracking and Notifications**
 
-#### **Step 3: Admin Reviews Complaints (Optional for Hackathon)**
-- Admin logs in to view all complaints in a simple dashboard.
-- They can update the status of complaints (e.g., from “Under Review” to “Resolved”).
+1.  **Anonymous Users**:
+    -   Use their unique **Complaint ID** to track status on a public tracking page.
+2.  **Non-Anonymous Users**:
+    -   Receive notifications (via email/SMS) when the status changes.
+    -   Option to view complaint history and updates within their account dashboard.
 
----
+#### **Step 5: Admin Review and Follow-Up**
 
-### **Team Roles (Two Members)**
+1.  Admin accesses the dashboard with features to:
+    -   View complaints along with AI-generated severity and summaries.
+    -   Filter complaints by severity, type, or status.
+    -   Update complaint statuses (e.g., "Under Review," "Resolved").
+    -   Contact users via email for additional information (if provided).
 
-1. **Frontend Developer**:
-   - Build the user interface for the complaint form and status-checking page.
-   - Style the app using Tailwind CSS to save time.
-   - Deploy the frontend on Vercel.
+----------
 
-2. **Backend Developer**:
-   - Set up the server with Express.js.
-   - Create API endpoints:
-     - `POST /complaints` for submitting complaints.
-     - `GET /complaints/:id` for retrieving complaint status.
-   - Use Firebase or SQLite for data storage.
-   - Deploy the backend on Render.
+### **Additional Considerations**
 
----
+#### **Privacy for Anonymous Complaints**:
 
-### **Development Plan (10 Hours)**
+-   Anonymous complaint data is stored without any account linkage.
+-   Optional email addresses for follow-ups are encrypted and only visible to authorized admins.
 
-#### **Hour 1-2: Planning and Setup**
-- Set up GitHub repository and development environments.
-- Decide on API structure and database schema.
-- Set up basic frontend and backend skeletons.
+#### **Notification Mechanism**:
 
-#### **Hour 3-5: Core Development**
-- **Frontend**: 
-  - Build the complaint form and tracking page.
-  - Integrate API calls for submitting and tracking complaints.
-- **Backend**:
-  - Create endpoints for handling complaint submissions and retrieval.
-  - Connect the database and test data storage/retrieval.
+-   For non-anonymous users:
+    -   Notifications include status changes and resolution updates.
+    -   Email/SMS options are configurable during complaint submission.
+-   For anonymous users with email:
+    -   Admins can send inquiries for additional information via secure, one-way communication.
 
-#### **Hour 6-7: Testing**
-- Test the frontend and backend integration.
-- Ensure data flows correctly and complaints are retrievable.
+----------
 
-#### **Hour 8-9: Polishing**
-- Add basic validation for complaint forms (e.g., required fields).
-- Style the app with Tailwind CSS for a clean look.
 
-#### **Hour 10: Deployment and Final Testing**
-- Deploy the app on Vercel (frontend) and Render (backend).
-- Test the deployed version to ensure everything works as expected.
 
----
+----------
 
-### **Sample Database Structure**
-
-#### Complaints Table:
-| Field           | Type          | Description                              |
-|------------------|---------------|------------------------------------------|
-| `id`            | String (UUID) | Unique ID for the complaint.            |
-| `type`          | String        | Type of corruption (e.g., bribery).      |
-| `details`       | Text          | Description of the incident.            |
-| `status`        | String        | Complaint status (e.g., Submitted).      |
-| `createdAt`     | Timestamp     | Date and time of submission.             |
-
----
-
-### **Sample API Endpoints**
-
-1. **Submit Complaint**:
-   - **Endpoint**: `POST /complaints`
-   - **Request Body**:
-     ```json
-     {
-       "type": "Bribery",
-       "details": "Officer demanded extra fees for approval."
-     }
-     ```
-   - **Response**:
-     ```json
-     {
-       "id": "12345",
-       "status": "Submitted"
-     }
-     ```
-
-2. **Track Complaint**:
-   - **Endpoint**: `GET /complaints/:id`
-   - **Response**:
-     ```json
-     {
-       "id": "12345",
-       "type": "Bribery",
-       "details": "Officer demanded extra fees for approval.",
-       "status": "Under Review",
-       "createdAt": "2025-01-26T10:00:00Z"
-     }
-     ```
-
----
-
-### **What to Present**
-1. **Demo**: 
-   - Submit a complaint.
-   - Track its status using the ID.
-
-2. **Key Features**:
-   - Anonymous reporting.
-   - Real-time complaint tracking.
-
-3. **Future Enhancements**:
-   - Add admin features for managing complaints.
-   - Introduce analytics to identify corruption hotspots.
-
----
-
-This structure ensures your project is achievable within the hackathon constraints while showcasing an impactful solution. Let me know if you need help with specific code snippets or further clarifications!
+This refined approach balances **privacy, accountability**, and **scalability** while ensuring a user-friendly experience. Let me know if you'd like further refinements or additional features!
